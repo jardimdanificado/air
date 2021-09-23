@@ -39,7 +39,7 @@ int traduzir_path(int qturnos)
 {
     for(int i = 0; i <qturnos;i++)
     {
-        usleep(qturnos*1500);
+        usleep(50000/(i+1));
         
         if(path[i]=='8')
         {
