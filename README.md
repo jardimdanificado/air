@@ -1,3 +1,5 @@
-# air
+# AIR
 
-aircraft instruments, roguelike
+Alfa India Romeu!
+
+numpad does everything besides quit(q)
