@@ -8,9 +8,11 @@
 #include <time.h>
 #include <unistd.h>
 
+
+#include "nscan.h"
 #include "turns.h"
 #include "itoa.h"
-#include "ship.h"
+#include "nave.h"
 #include "cursor.h"
 #include "pathfinder.h"
 #include "teclado.h"
@@ -34,11 +36,12 @@ int main()
     
     while(tecla!='q')
     {
+        placar_gasosa(tmax);
         placar_turno(tmax);
         placar_distancia(tmax);
         curs_set(1);
         catualiza();
-        tecla = Teclado();
+        tecla = Teclado(tmax);
         refresh();
     }
 
