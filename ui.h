@@ -5,7 +5,7 @@ char velo_d[2] = {'0','0'};
 
 int titulo(int *tmax)
 {
-    mvprintw(0,((tmax[1]/2)-(sizeof("__AirCraft Instruments__")/2))-1 ,"__AirCraft Instruments__" );
+    mvprintw(0,((tmax[1]/2)-(sizeof("__AirCraft Instruments__")/2)) ,"__AirCraft Instruments__" );
 }
 
 int escondererro(int *tmax)
