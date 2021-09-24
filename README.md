@@ -13,3 +13,5 @@ numpad(8way)/keypad moves cursor;
 SPACE move to the cursor direction 1x the turns range
 
 'q' quits 
+
+'<' and '>' changes the speed
