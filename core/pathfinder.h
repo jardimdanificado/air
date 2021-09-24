@@ -166,7 +166,7 @@ int gerar_rota(int qturnos,int *tmax)
             {
                 path[linha_atual] = '8';
                 linha_atual++;
-                mvaddch(pretorna_y()-1,pretorna_x(),'|');
+                mvaddch(pretorna_y()-1,pretorna_x(),'|'); 
                 refresh();
 
             }

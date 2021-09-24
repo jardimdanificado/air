@@ -62,9 +62,22 @@ int titulo_(int *tmax)
     {
         mvinch(0,i);
         int var = inch();
-        if(var == ' ')
+        if(var == ' '||var == '#')
         {
             mvaddch(0,i,'_');
+        }
+    }
+}
+
+int divisor(int *tmax)
+{
+    for(int i = 0; i < tmax[1];i++)
+    {
+        mvinch(0,i);
+        int var = inch();
+        if(var == ' '||var == '#')
+        {
+            mvaddch(tmax[0]-2,i,'_');
         }
     }
 }

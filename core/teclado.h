@@ -14,7 +14,7 @@ int Teclado(int *tmax)
         
         switch(tecla)
         {
-        		case 'q':
+                default:
         		{
         			return(tecla);
         		}
@@ -37,12 +37,13 @@ int Teclado(int *tmax)
         		        {
         		            move(cretorna_y(),cretorna_x());
         		            mvaddch(cretorna_y(),cretorna_x(),' ');
-        		            return(0);
+        		            return(tecla);
         		        }
         		    }
         		    
         		    move(cretorna_y(),cretorna_x());
         		    mvaddch(cretorna_y(),cretorna_x(),' ');
+        		    return(tecla);
                    }
         		  }
         		}
@@ -61,11 +62,13 @@ int Teclado(int *tmax)
         		        {
         		            move(cretorna_y(),cretorna_x());
         		            mvaddch(cretorna_y(),cretorna_x(),' ');
-        		            return(0);
+        		            return(tecla);
         		        }
+        		        
         		    }
         		    mvaddch(cretorna_y(),cretorna_x(),' ');
         		    move(cretorna_y(),cretorna_x());
+        		    return(tecla);
         		    //tecla = getchar();
         		    //traduzir_path(qturnos);
         		  } 
@@ -97,14 +100,14 @@ int Teclado(int *tmax)
                 
                 case '2':
                 {
-                    if(cretorna_y()<tmax[0]-2)
+                    if(cretorna_y()<tmax[0]-3)
                     cmovedown();
                 }
                 break;
                 
                 case '1':
                 {
-                    if(cretorna_y()<tmax[0]-2&&cretorna_x()>0)
+                    if(cretorna_y()<tmax[0]-3&&cretorna_x()>0)
                     cmovedownl();
                 }
                 break;
@@ -146,7 +149,7 @@ int Teclado(int *tmax)
                 
                 case KEY_DOWN:
                 {
-                    if(cretorna_y()<tmax[0]-2)
+                    if(cretorna_y()<tmax[0]-3)
                     cmovedown();
                 }
                 break;
@@ -186,6 +189,8 @@ int Teclado(int *tmax)
                 
                 }
                 break;
+                
+                
 
 
 

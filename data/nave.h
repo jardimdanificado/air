@@ -7,6 +7,11 @@ int gasosacont = 0;
 
 int velocidade = 1;
 
+void update_nave()
+{
+    mvaddch(pposi[0],pposi[1],'@');
+}
+
 int get_velo()
 {
     return(velocidade);
