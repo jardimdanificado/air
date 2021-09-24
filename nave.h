@@ -1,9 +1,29 @@
 
 int pposi[2] = {2,2};
 
-int gasosaq = 70;
+int gasosaq = 52;
 
 int gasosacont = 0;
+
+int velocidade = 1;
+
+int get_velo()
+{
+    return(velocidade);
+}
+
+void velosobe()
+{
+    velocidade++;
+}
+
+void velodesce()
+{
+    if(velocidade>1)
+    {
+        velocidade--;
+    }
+}
 
 int retornargasosa()
 {
@@ -16,12 +36,23 @@ int gasosa()
     {
         return(0);
     }
-    else if(gasosacont == 1)
+    else if(get_velo()<3) {
+    if(gasosacont ==(4/get_velo()))
     {
         gasosaq--;
         gasosacont=0;
     }
     
+    }else if(get_velo()>2){
+    
+    if(gasosacont >0)
+    {
+        gasosaq= gasosaq- get_velo();
+        gasosacont=0;
+    }
+        
+    
+    }
 }
 
 int gasosa_gastou()
@@ -71,6 +102,7 @@ if(var == 0)
     return(0);
 }
  }
+ 
 int pmoveupr(int y, int x)
 {
     mvaddch(pposi[0],pposi[1],' ');

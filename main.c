@@ -36,9 +36,16 @@ int main()
     
     while(tecla!='q')
     {
+        limpa_bot(tmax);
+        titulo(tmax);
+        titulo_(tmax);
         placar_gasosa(tmax);
         placar_turno(tmax);
         placar_distancia(tmax);
+        placar_velocidade(tmax);
+        escondererro(tmax);
+        escondererro2(tmax);
+        
         curs_set(1);
         catualiza();
         tecla = Teclado(tmax);

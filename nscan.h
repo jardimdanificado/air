@@ -1,4 +1,4 @@
-int scan[4];
+int scan[8];
 
 int scan0()
 {
@@ -20,6 +20,26 @@ int scan3()
     return(scan[3]);
 }
 
+int scan4()
+{
+    return(scan[4]);
+}
+
+int scan5()
+{
+    return(scan[5]);
+}
+
+int scan6()
+{
+    return(scan[6]);
+}
+
+int scan7()
+{
+    return(scan[7]);
+}
+
 int scanear(int y,int x)
 {
     //esquerda
@@ -27,7 +47,7 @@ int scanear(int y,int x)
     scan[0] = inch();
     
     //cima
-    mvinch(y+1,x);
+    mvinch(y-1,x);
     scan[1] = inch();
     
     //direita
@@ -37,4 +57,20 @@ int scanear(int y,int x)
     //baixo
     mvinch(y+1,x);
     scan[3] = inch();
+    
+    //esquerda cima
+    mvinch(y-1,x-1);
+    scan[4] = inch();
+    
+    //cima direita
+    mvinch(y-1,x+1);
+    scan[5] = inch();
+    
+    //direita baixo
+    mvinch(y+1,x+1);
+    scan[6] = inch();
+    
+    //baixo esquerda
+    mvinch(y+1,x-1);
+    scan[7] = inch();
 }

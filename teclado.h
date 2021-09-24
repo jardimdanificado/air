@@ -24,19 +24,24 @@ int Teclado(int *tmax)
         		{
         		if(retornargasosa()>0)
         		  {
+        		  int var;
         		  curs_set(0);
         		 // limpar_rota();
         		   for(int i = 0; i <5;i++)
         		   {
-        		    mvaddch(cretorna_y(),cretorna_x(),'0');
+        		    //mvaddch(cretorna_y(),cretorna_x(),'+');
         		    for(int i=0; i < qturnos;i++)
                     {
-        		        gerar_rota(qturnos);
+        		        var = gerar_rota(qturnos,tmax);
+        		        if(var == 0)
+        		        {
+        		            move(cretorna_y(),cretorna_x());
+        		            mvaddch(cretorna_y(),cretorna_x(),' ');
+        		            return(0);
+        		        }
         		    }
         		    
         		    move(cretorna_y(),cretorna_x());
-        		    //tecla = getchar();
-        		    //traduzir_path(qturnos);
         		    mvaddch(cretorna_y(),cretorna_x(),' ');
                    }
         		  }
@@ -48,12 +53,14 @@ int Teclado(int *tmax)
         		  {
         		    int var;
         		    curs_set(0);
-        		    mvaddch(cretorna_y(),cretorna_x(),'0');
+        		    //mvaddch(cretorna_y(),cretorna_x(),'+');
         		    for(int i=0; i < qturnos;i++)
                     {
-        		        var = gerar_rota(qturnos);
+        		        var = gerar_rota(qturnos,tmax);
         		        if(var == 0)
         		        {
+        		            move(cretorna_y(),cretorna_x());
+        		            mvaddch(cretorna_y(),cretorna_x(),' ');
         		            return(0);
         		        }
         		    }
@@ -69,21 +76,21 @@ int Teclado(int *tmax)
 
                 case '8':
                 {
-                    if(cretorna_y()>0)
+                    if(cretorna_y()>1)
                     cmoveup();
                 }
                 break;
                 
                 case '7':
                 {
-                    if(cretorna_y()>0&&cretorna_x()>0)
+                    if(cretorna_y()>1&&cretorna_x()>0)
                     cmoveupl();
                 }
                 break;
                 
                 case '9':
                 {
-                    if(cretorna_y()>0&&cretorna_x()<tmax[1]-1)
+                    if(cretorna_y()>1&&cretorna_x()<tmax[1]-1)
                     cmoveupr();
                 }
                 break;
@@ -146,7 +153,7 @@ int Teclado(int *tmax)
                 
                 case KEY_UP:
                 {
-                    if(cretorna_y()>0)
+                    if(cretorna_y()>1)
                     cmoveup();
                 }
                 break;
@@ -162,6 +169,20 @@ int Teclado(int *tmax)
                 {
                     if(qturnos > 0)
                         qturnos = qturnos - 1;
+                
+                }
+                break;
+                
+                case '<':
+                {
+                    
+                        velodesce();
+                }
+                break;
+                
+                case '>':
+                {
+                        velosobe();
                 
                 }
                 break;
