@@ -7,9 +7,42 @@ int gasosacont = 0;
 
 int velocidade = 1;
 
+void abastecer()
+{
+    scanear(pposi[0],pposi[1]);
+    if(scan1()=='%')
+    {
+        int random = rand()%15;
+        for(int i = 0;i <random;i++)
+        {
+            usleep(80000);
+            gasosaq = gasosaq + random/2;
+            refresh();
+            random = rand()%15;
+            
+        }
+        
+    }
+    if(scan3()=='%')
+    {
+        int random = rand()%15;
+        for(int i = 0;i <random;i++)
+        {
+            usleep(80000);
+            gasosaq = gasosaq + random/3;
+            refresh();
+            random = rand()%15;
+            
+        }
+    }
+    
+}
+
 void update_nave()
 {
+    attron(COLOR_PAIR(1));
     mvaddch(pposi[0],pposi[1],'@');
+    attroff(COLOR_PAIR(1));
 }
 
 int get_velo()
@@ -82,12 +115,34 @@ int pretorna_x()
     return(pposi[1]);
 }
 
-void pposicao_inicial(int y, int x)
+void pposicao_inicial(int *tmax)
 {
-    pposi[0] = y/2;
-    pposi[1] = x/2;
-    mvaddch(pposi[0],pposi[1],'@');
-    refresh();
+    int cronometro =0;
+    
+    
+    for(int y = 1;y<(tmax[0]-2);y++)
+        {
+          for(int x = 0;x<tmax[1];x++)
+       	  {
+            mvinch(y,x);
+            inch();
+            int leitura = inch();
+            if(leitura == '=')
+            {
+		        cronometro++;
+		    }
+		    if(cronometro == 6)
+		    {
+		        pposi[0] = y;
+		        pposi[1] = x;
+		        mvaddch(pposi[0],pposi[1],'@');
+		        refresh();
+		        y=tmax[0]+50;
+		        x=tmax[1]+50;
+		        
+		    }
+		  }
+		}
 }
 
 

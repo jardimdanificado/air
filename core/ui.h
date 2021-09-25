@@ -2,6 +2,7 @@ char displayd[3] = {'0','0','0'};
 char turnosy[4] = {'0','0','0','0'};
 char gasosi[3] = {'0','0','0'};
 char velo_d[2] = {'0','0'};
+char dindin[6] = {'0','0','0','0','0','0'};
 
 int titulo(int *tmax)
 {
@@ -152,6 +153,21 @@ int placar_velocidade(int *tmax)
     mvaddch(tmax[0]-1,tmax[1]-38,'D');
     mvaddch(tmax[0]-1,tmax[1]-37,':');
     
+    
+    move(cretorna_y(),cretorna_x());
+}
+
+int placardinheiro(int *tmax)
+{
+    int grann = getgrana();
+    itoa(grann,dindin,12);
+    mvaddch(tmax[0]-1,tmax[1]-50,'$');
+    mvaddch(tmax[0]-1,tmax[1]-49,dindin[0]);
+    mvaddch(tmax[0]-1,tmax[1]-48,dindin[1]);
+    mvaddch(tmax[0]-1,tmax[1]-47,dindin[2]);
+    mvaddch(tmax[0]-1,tmax[1]-46,dindin[3]);
+    mvaddch(tmax[0]-1,tmax[1]-45,dindin[4]);
+    mvaddch(tmax[0]-1,tmax[1]-44,dindin[5]);
     
     move(cretorna_y(),cretorna_x());
 }

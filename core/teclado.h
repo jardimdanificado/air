@@ -20,6 +20,19 @@ int Teclado(int *tmax)
         		}
         		break;
         		
+        		case 'f':
+        		{
+        		    if(scan1()=='%'||scan3()=='%')
+        		    {
+        		      abastecer();  
+        		    }
+        		    else if(scan1()=='&'||scan3()=='&')
+        		    {
+        		      //abastecer();  
+        		    }
+        		}
+        		break;
+        		
         		case '5':
         		{
         		if(retornargasosa()>0)

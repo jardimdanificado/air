@@ -202,6 +202,7 @@ int gerar_rota(int qturnos,int *tmax)
     
     if(scan0()!='+'&&scan1()!='+'&&scan2()!='+'&&scan3()!='+'&&scan4()!='+'&&scan5()!='+'&&scan6()!='+'&&scan7()!='+')
     {
+       
        int var = traduzir_path(1,tmax);
        if(var == 0)
        {
