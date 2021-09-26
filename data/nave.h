@@ -1,7 +1,7 @@
 
 int pposi[2] = {2,2};
 
-int gasosaq = 52;
+int gasosaq = 200;
 
 int gasosacont = 0;
 
@@ -9,33 +9,9 @@ int velocidade = 1;
 
 void abastecer()
 {
-    scanear(pposi[0],pposi[1]);
-    if(scan1()=='%')
-    {
-        int random = rand()%15;
-        for(int i = 0;i <random;i++)
-        {
-            usleep(80000);
-            gasosaq = gasosaq + random/2;
+            gasosaq = gasosaq + 1;
+            granamenosx(1*12);
             refresh();
-            random = rand()%15;
-            
-        }
-        
-    }
-    if(scan3()=='%')
-    {
-        int random = rand()%15;
-        for(int i = 0;i <random;i++)
-        {
-            usleep(80000);
-            gasosaq = gasosaq + random/3;
-            refresh();
-            random = rand()%15;
-            
-        }
-    }
-    
 }
 
 void update_nave()

@@ -5,6 +5,7 @@ char path[150];
 
 int linha_atual=0;
 
+int exec_atual = 0;
 
 void limpar_rota()
 {
@@ -54,160 +55,210 @@ int update_gasosa(int *tmax)
 }
 
 
-int traduzir_path(int qturnos,int *tmax)
+int traduzir_path(int *tmax)
 {
     int var;
-    for(int i = 0; i <qturnos;i++)
-    {
+
         usleep(300000/get_velo());
-        if(scan0()=='+'||scan1()=='+'||scan2()=='+'||scan3()=='+'||scan4()=='+'||scan5()=='+'||scan6()=='+'||scan7()=='+')
-        {
-            return(0);
-        }
-        if(path[i]=='8')
+    if(gasosaq>0)
+    {
+        if(path[exec_atual]=='8')
         {
             var = pmoveup(pretorna_y(),pretorna_x());
             turnomais();
         }
         
-        if(path[i]=='9')
+        if(path[exec_atual]=='9')
         {
             var = pmoveupr(pretorna_y(),pretorna_x());
             turnomais();
         }
         
-        if(path[i]=='7')
+        if(path[exec_atual]=='7')
         {
             var = pmoveupl(pretorna_y(),pretorna_x());
             turnomais();
         }
         
-        if(path[i]=='6')
+        if(path[exec_atual]=='6')
         {
             var = pmoveright(pretorna_y(),pretorna_x());
             turnomais();
         }
-        if(path[i]=='4')
+        if(path[exec_atual]=='4')
         {
             var = pmoveleft(pretorna_y(),pretorna_x());
             turnomais();
         }
-        if(path[i]=='1')
+        if(path[exec_atual]=='1')
         {
             var = pmovedownl(pretorna_y(),pretorna_x());
             turnomais();
         }
-        if(path[i]=='2')
+        if(path[exec_atual]=='2')
         {
             var = pmovedown(pretorna_y(),pretorna_x());
             turnomais();
         }
-        if(path[i]=='3')
+        if(path[exec_atual]=='3')
         {
             var = pmovedownr(pretorna_y(),pretorna_x());
             turnomais();
         }
+    }
         update_gasosa(tmax);
         update_turno(tmax);
+        
         if(var == 0)
         {
             return(0);
         }
         
-    }
+    //}
     
+    exec_atual++;
+}
+
+int ultimo_destino[2];
+
+void setdestino()
+{
+    ultimo_destino[0]=pretorna_y();
+    ultimo_destino[1]=pretorna_x();
+}
+
+int get_udy()
+{
+    return(ultimo_destino[0]);
+}
+
+int get_udx()
+{
+    return(ultimo_destino[1]);
+}
+
+int temrota()
+{
+    int seboseira = 0;
+    for(int x =0;x <telamx();x++)
+    {
+        for(int y =0;y <telamy()-2;y++)
+        {
+            mvinch(y,x);
+            char var2 = inch();
+            if(var2=='+')
+            {
+                seboseira = 1;
+                return(1);
+            }
+        }
+    }
+    if(seboseira == 0)
+    {
+    return(0);
+    }
     
 }
 
-
-int gerar_rota(int qturnos,int *tmax)
+int gerar_rota(int *tmax)
 {
-    
+    int imagi[2];
+    int o_destino[2];
+    exec_atual = 0;
     mvaddch(cretorna_y(),cretorna_x(),'+');
+    o_destino[0] = cretorna_y();
+    o_destino[1] = cretorna_x();
+    ultimo_destino[0] = cretorna_y();
+    ultimo_destino[1] = cretorna_x();
     limpar_rota();
     scanear(pretorna_y(),pretorna_x());
-        
-        if(pretorna_y()>cretorna_y()&&pretorna_x()>cretorna_x())
+    imagi[0] = pretorna_y();
+    imagi[1] = pretorna_x();
+    //scanear(imagi[0],imagi[1]);
+    
+      while(imagi[0]!=o_destino[0]||imagi[1]!=o_destino[1]) 
+      {
+        scanear(imagi[0],imagi[1]);
+        if(imagi[0]>o_destino[0]&&imagi[1]>o_destino[1])
         {
             path[linha_atual] = '7';
             linha_atual++;
-            mvaddch(pretorna_y()-1,pretorna_x()-1,'\\');
+            imagi[0]--;
+            imagi[1]--;
+
             refresh();
         }
-        else if(pretorna_y()>cretorna_y()&&pretorna_x()<cretorna_x())
+        else if(imagi[0]>o_destino[0]&&imagi[1]<o_destino[1])
         {
             path[linha_atual] = '9';
             linha_atual++;
-            mvaddch(pretorna_y()-1,pretorna_x()+1,'/');
+            imagi[0]--;
+            imagi[1]++;
             refresh();
         }
     
-        else if(pretorna_y()<cretorna_y()&&pretorna_x()>cretorna_x())
+        else if(imagi[0]<o_destino[0]&&imagi[1]>o_destino[1])
         {
             path[linha_atual] = '1';
+            imagi[0]++;
+            imagi[1]--;
             linha_atual++;
-            mvaddch(pretorna_y()+1,pretorna_x()-1,'/');
             refresh();
             
         }
     
-        else if(pretorna_y()<cretorna_y()&&pretorna_x()<cretorna_x())
+        else if(imagi[0]<o_destino[0]&&imagi[1]<o_destino[1])
         {
             path[linha_atual] = '3';
             linha_atual++;
-            mvaddch(pretorna_y()+1,pretorna_x()+1,'\\');
+            imagi[0]++;
+            imagi[1]++;
             refresh();
             
         }
     
-        else if(pretorna_x()==cretorna_x())
+        else if(imagi[1]==o_destino[1])
         {
-            if(pretorna_y()>cretorna_y())
+            if(imagi[0]>o_destino[0])
             {
                 path[linha_atual] = '8';
+                imagi[0]--;
                 linha_atual++;
-                mvaddch(pretorna_y()-1,pretorna_x(),'|'); 
                 refresh();
 
             }
-            if(pretorna_y()<cretorna_y())
+            if(imagi[0]<o_destino[0])
             {
                 path[linha_atual] = '2';
                 linha_atual++;
-                mvaddch(pretorna_y()+1,pretorna_x(),'|');
+                imagi[0]++;
                 refresh();
                 
             }
        }   
-       else if(pretorna_y()==cretorna_y())
+       else if(imagi[0]==o_destino[0])
        {
-         if(pretorna_x()>cretorna_x())
+         if(imagi[1]>o_destino[1])
          {
             path[linha_atual] = '4';
             linha_atual++;
-            mvaddch(pretorna_y(),pretorna_x()-1,'-');
+            imagi[1]--;
             refresh();
          }
     
-         if(pretorna_x()<cretorna_x())
+         if(imagi[1]<o_destino[1])
          {
             path[linha_atual] = '6';
             linha_atual++;
-            mvaddch(pretorna_y(),pretorna_x()+1,'-');
+            imagi[1]++;
             refresh();
          }
        }
-       
-    mvaddch(cretorna_y(),cretorna_x(),'+');
+     }
     
-    if(scan0()!='+'&&scan1()!='+'&&scan2()!='+'&&scan3()!='+'&&scan4()!='+'&&scan5()!='+'&&scan6()!='+'&&scan7()!='+')
+   if(imagi[0]==o_destino[0]&&imagi[1]==o_destino[1])
     {
-       
-       int var = traduzir_path(1,tmax);
-       if(var == 0)
-       {
-            return(0);
-       }
+        return(0);
     }
    
 }

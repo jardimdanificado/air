@@ -1,11 +1,6 @@
 
+int abastecendo =0;
 
-int qturnos = 3;
-
-int retornarqturnos()
-{
-    return(qturnos);
-}
 
 int Teclado(int *tmax)
 {
@@ -22,9 +17,20 @@ int Teclado(int *tmax)
         		
         		case 'f':
         		{
-        		    if(scan1()=='%'||scan3()=='%')
+        		    scanear(pretorna_y(),pretorna_x());
+        		    if(getgrana()>0)
         		    {
-        		      abastecer();  
+        		        if(scan1()=='%'||scan3()=='%')
+        		        {
+        		            if(abastecendo==0)
+        		            {
+        		                abastecendo = 1;
+        		            }
+        		            else if(abastecendo==1)
+        		            {
+        		                abastecendo = 0;
+        		            }
+        		        }
         		    }
         		    else if(scan1()=='&'||scan3()=='&')
         		    {
@@ -33,61 +39,29 @@ int Teclado(int *tmax)
         		}
         		break;
         		
-        		case '5':
-        		{
-        		if(retornargasosa()>0)
-        		  {
-        		  int var;
-        		  curs_set(0);
-        		 // limpar_rota();
-        		   for(int i = 0; i <5;i++)
-        		   {
-        		    //mvaddch(cretorna_y(),cretorna_x(),'+');
-        		    for(int i=0; i < qturnos;i++)
-                    {
-        		        var = gerar_rota(qturnos,tmax);
-        		        if(var == 0)
-        		        {
-        		            move(cretorna_y(),cretorna_x());
-        		            mvaddch(cretorna_y(),cretorna_x(),' ');
-        		            return(tecla);
-        		        }
-        		    }
-        		    
-        		    move(cretorna_y(),cretorna_x());
-        		    mvaddch(cretorna_y(),cretorna_x(),' ');
-        		    return(tecla);
-                   }
-        		  }
-        		}
         		
         		case ' ':
         		{
+        		  if(get_udy()!=pretorna_y()||get_udx()!=pretorna_x())
+        		  {
+        		    mvaddch(get_udy(),get_udx(),' ');
+        		  }
         		  if(retornargasosa()>0)
         		  {
         		    int var;
         		    curs_set(0);
         		    //mvaddch(cretorna_y(),cretorna_x(),'+');
-        		    for(int i=0; i < qturnos;i++)
-                    {
-        		        var = gerar_rota(qturnos,tmax);
-        		        if(var == 0)
-        		        {
-        		            move(cretorna_y(),cretorna_x());
-        		            mvaddch(cretorna_y(),cretorna_x(),' ');
-        		            return(tecla);
-        		        }
-        		        
+        		        var = gerar_rota(tmax);
+        		    if(var == 0)
+        		    {
+        		        move(cretorna_y(),cretorna_x());
+        		        return(tecla);
         		    }
-        		    mvaddch(cretorna_y(),cretorna_x(),' ');
         		    move(cretorna_y(),cretorna_x());
         		    return(tecla);
-        		    //tecla = getchar();
-        		    //traduzir_path(qturnos);
         		  } 
 
         		}
-        		
         		break;
 
                 case '8':
@@ -177,31 +151,16 @@ int Teclado(int *tmax)
                 case '+':
                 {
                     
-                        qturnos= qturnos + 1;
+                        velosobe();
                 }
                 break;
                 
                 case '-':
                 {
-                    if(qturnos > 0)
-                        qturnos = qturnos - 1;
-                
-                }
-                break;
-                
-                case '<':
-                {
-                    
                         velodesce();
                 }
                 break;
                 
-                case '>':
-                {
-                        velosobe();
-                
-                }
-                break;
                 
                 
 
