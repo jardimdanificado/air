@@ -12,8 +12,8 @@ SPACE set a destination
 
 'q' quits 
 
-to compile use :
+to compile on debian(if you prefer theres a build.sh file included in source):
 
-sudo apt install libncurses5-dev libxdo build-essential libx11 libxtst
+sudo apt install libncurses5-dev libxdo-dev libxdo3 build-essential libx11-dev libxtst-dev libc-bin linux-libc-dev
 
 gcc main.c -o air.run -lncurses -lxdo
