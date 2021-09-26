@@ -57,8 +57,8 @@ void alarme(int signo){
     }
     xdo_send_keysequence_window(xfake, CURRENTWINDOW, "d", 0);
     contanuvem++;
-
-    if(contanuvem==5*(get_velo()/2))
+  if(temrota()==1){
+    if(contanuvem==5*((get_velo()/2)+1))
     {
         clima_atualiza();
         
@@ -103,6 +103,56 @@ void alarme(int signo){
         titulo(telam);
         placar_turno(telam);
     }
+  }
+    if(temrota()==0){
+    if(contanuvem==5)
+    {
+        clima_atualiza();
+        
+        
+        for(int y = 1;y<(telamy()-2);y++)
+        {
+          for(int x = 0;x<telamx();x++)
+          {
+            mvinch(y,x);
+            char vodca = inch();
+             if(vodca=='+')
+             {
+                    mvaddch(y,x,'+');
+       	            refresh();
+       	     }
+     	     else if(mapa[y][x]=='@')
+             {
+                    
+       	            mvaddch(y,x,' ');
+       	           
+       	            refresh();
+       	     }
+       	     else
+             {
+                    mvaddch(y,x,mapa[y][x]);
+                    refresh();
+             }
+              
+          }
+        }
+        for(int i = 0; i<getclima();i++)
+        {
+            update_nave();
+            mvprintw(telamy()-1,1,"LOADING CLOUDS...");
+            attron(COLOR_PAIR(3));
+            criar_nuvens(telam);
+            attroff(COLOR_PAIR(3));
+            contanuvem=0;
+            titulo_(telam);
+        }
+        divisor(telam);
+        titulo(telam);
+        placar_turno(telam);
+    }
+  }
+    
+    
     turnomais();
     refresh();
     
