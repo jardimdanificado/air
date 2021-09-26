@@ -58,7 +58,7 @@ void alarme(int signo){
     xdo_send_keysequence_window(xfake, CURRENTWINDOW, "d", 0);
     contanuvem++;
 
-    if(contanuvem==5)
+    if(contanuvem==5*(get_velo()/2))
     {
         clima_atualiza();
         
