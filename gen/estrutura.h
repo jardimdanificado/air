@@ -23,22 +23,14 @@ void criar_aeroportos(int *tmax)
 		{
 		    mvaddch(y,x-1,'[');
 			mvaddch(y,x,'%');
-			mvaddch(y,x+1,'#');
+			mvaddch(y,x+1,'&');
 			mvaddch(y,x+2,']');
-			mvaddch(y,x+3,'=');
-			mvaddch(y,x+4,'=');
-			mvaddch(y+1,x-1,' ');
-			mvaddch(y+1,x,'-');
-			mvaddch(y+1,x+1,' ');
-			mvaddch(y+1,x+2,'-');
-			mvaddch(y+2,x-1,'=');
-			mvaddch(y+2,x,'=');
-			mvaddch(y+2,x+1,'=');
-			mvaddch(y+2,x+2,'=');
-			mvaddch(y+1,x+3,' ');
-			mvaddch(y+1,x+4,'-');
-			mvaddch(y+2,x+3,'=');
-			mvaddch(y+2,x+4,'=');
+			mvaddch(y+1,x-1,'=');
+			mvaddch(y+1,x,'=');
+			mvaddch(y+1,x+1,'=');
+			mvaddch(y+1,x+2,'=');
+			mvaddch(y+1,x+3,'=');
+			mvaddch(y+1,x+4,'=');
 			y = tmax[0]+1;
 			x = tmax[1]+1;
 		}
@@ -46,22 +38,14 @@ void criar_aeroportos(int *tmax)
 		{
 		    mvaddch(y,x-1,'[');
 			mvaddch(y,x,'%');
-			mvaddch(y,x+1,'#');
+			mvaddch(y,x+1,'&');
 			mvaddch(y,x+2,']');
-			mvaddch(y,x+3,'=');
-			mvaddch(y,x+4,'=');
-			mvaddch(y-1,x-1,' ');
-			mvaddch(y-1,x,'-');
-			mvaddch(y-1,x+1,' ');
-			mvaddch(y-1,x+2,'-');
-			mvaddch(y-2,x-1,'=');
-			mvaddch(y-2,x,'=');
-			mvaddch(y-2,x+1,'=');
-			mvaddch(y-2,x+2,'=');
-			mvaddch(y-1,x+3,' ');
-			mvaddch(y-1,x+4,'-');
-			mvaddch(y-2,x+3,'=');
-			mvaddch(y-2,x+4,'=');
+			mvaddch(y-1,x-1,'=');
+			mvaddch(y-1,x,'=');
+			mvaddch(y-1,x+1,'=');
+			mvaddch(y-1,x+2,'=');
+			mvaddch(y-1,x+3,'=');
+			mvaddch(y-1,x+4,'=');
 			y = tmax[0]+1;
 			x = tmax[1]+1;
 		}
